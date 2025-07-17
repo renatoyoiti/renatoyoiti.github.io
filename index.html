@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Renato Yoiti - Fullstack Developer</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            neon: {
+              red: '#ff073a' /* vermelho neon vibrante */
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- React e Babel -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <!-- Feather Icons -->
+  <script src="https://unpkg.com/feather-icons"></script>
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    .neon-glow {
+      text-shadow:
+        0 0 4px #ff073a,
+        0 0 8px #ff073a,
+        0 0 16px #ff073a;
+    }
+
+    a.transition {
+      transition: all 0.3s ease;
+    }
+  </style>
+</head>
+<body class="bg-zinc-950 text-gray-100 min-h-screen font-sans">
+  <div id="root"></div>
+
+  <script type="text/babel">
+    function Nav() {
+      return (
+        <nav className="p-4 fixed w-full top-0 bg-zinc-950 border-b border-zinc-800 z-50">
+          <ul className="flex justify-center gap-6 text-sm uppercase tracking-widest">
+            {['Sobre', 'Projetos', 'Skills', 'Contato'].map((text) => {
+              const id = text.toLowerCase();
+              return (
+                <li key={id}>
+                  <a
+                    href={`#${id}`}
+                    className="text-neon-red hover:text-white transition"
+                  >
+                    {text}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+      );
+    }
+
+    function Header() {
+      return (
+        <header className="pt-24 text-center px-4">
+          <h1 className="text-4xl font-medium tracking-wider mb-2 text-neon-red neon-glow">
+            Olá, eu sou Renato Yoiti
+          </h1>
+          <p className="text-lg mb-4 text-gray-300">
+            Desenvolvedor Fullstack | React • Node.js • AWS
+          </p>
+          <div className="flex justify-center gap-4 text-neon-red">
+            <a href="https://github.com/renatoyoiti" target="_blank" rel="noreferrer">
+              <i data-feather="github" className="w-6 h-6 hover:scale-110 transition-transform duration-200"></i>
+            </a>
+            <a href="https://linkedin.com/in/renatoyoiti" target="_blank" rel="noreferrer">
+              <i data-feather="linkedin" className="w-6 h-6 hover:scale-110 transition-transform duration-200"></i>
+            </a>
+          </div>
+        </header>
+      );
+    }
+
+    function Section({ id, title, children }) {
+      return (
+        <section id={id} className="max-w-3xl mx-auto px-4 py-16">
+          <h2 className="text-2xl font-semibold mb-4 border-b border-zinc-700 pb-2 text-neon-red">{title}</h2>
+          {children}
+        </section>
+      );
+    }
+
+    function About() {
+      return (
+        <Section id="sobre" title="Sobre Mim">
+          <p className="text-gray-300">Em breve mais sobre minha trajetória e propósito como dev...</p>
+        </Section>
+      );
+    }
+
+    function Projects() {
+      return (
+        <Section id="projetos" title="Projetos">
+          <p className="text-gray-300">Projetos em construção 🚧</p>
+        </Section>
+      );
+    }
+
+    function Skills() {
+      return (
+        <Section id="skills" title="Skills">
+          <p className="text-gray-300">React, Node.js, PostgreSQL, Tailwind, Docker, AWS...</p>
+        </Section>
+      );
+    }
+
+    function Contact() {
+      return (
+        <Section id="contato" title="Contato">
+          <p className="text-gray-300">
+            Para parcerias ou oportunidades: <span className="text-neon-red">renatoyoiti@gmail.com</span>
+          </p>
+        </Section>
+      );
+    }
+
+    function Footer() {
+      return (
+        <footer className="text-center text-sm py-8 text-gray-500">
+          © {new Date().getFullYear()} <span className="text-neon-red">Renato Yoiti</span> • Portfólio em construção 🚧
+        </footer>
+      );
+    }
+
+    function App() {
+      return (
+        <div>
+          <Nav />
+          <Header />
+          <About />
+          <Projects />
+          <Skills />
+          <Contact />
+          <Footer />
+        </div>
+      );
+    }
+
+    ReactDOM.render(<App />, document.getElementById("root"));
+    feather.replace();
+  </script>
+</body>
+</html>
